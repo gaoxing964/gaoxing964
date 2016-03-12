@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>2015-2016年度汽车服务金勋奖</title>
+        <meta name="description" content="2015-2016年度汽车服务金勋奖">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/static/web/css/font-awesome.css">
+        <link rel="stylesheet" href="/static/web/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/web/css/style.css">
+    </head>
+    <body>
+
+        <!--幻灯片-->
+        <div class="container">
+            <div class="row">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <!-- <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                  </ol> -->
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                      <img alt="image" class="img-responsive" src="/static/web/images/p_big1.png">
+                    </div>
+                    <div class="item">
+                      <img alt="image" class="img-responsive" src="/static/web/images/p_big2.png">
+                    </div>
+                    <div class="item">
+                      <img alt="image" class="img-responsive" src="/static/web/images/p_big3.png">
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!--幻灯片end -->
+        <!--奖项说明-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div class="text-center grandbtn">
+                        <button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#grand">
+                            <i class="fa fa-star-half-empty">活动及奖项说明</i>
+                        </button>
+                    </div>
+
+                    <div class="modal inmodal" id="grand" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content animated bounceInRight">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                                        <h4>活动说明</h4>
+                                    </div>
+                                    <div class="modal-body text-left">
+                                        <h4 class="m-b-xs">奖项背景</h4>
+                                        <p>一榜知天下。金勋奖被誉为“中国汽车服务业的奥斯卡”，是业内唯一通过实地调研及微友票选的、最具影响力、权威性和广泛性的评选。汽车服务金勋奖评选创办于2012年，由业内权威媒体《汽车服务世界》发起并承办，旨在通过赞赏行业先锋及优秀代表，推动汽车服务业规范化、规模化发展。</p>
+                                        <p>汽车服务金勋奖，通过实地调研、公开报名、微信投票、专家评审四个环节，参选结果以微信投票占权重60%，专家评审占40%加和得出，并在2016年2月25日于北京朗豪酒店（五星级）荣耀颁布。</p>
+                                        <hr/>
+                                        <h4 class="m-b-xs">评选流程</h4>
+                                        <ul>
+                                            <li>2015.1月-12月——走访门店</li>
+                                            <li>2015.12月22-25日——公开报名</li>
+                                            <li>2016.1月5-15日——微信投票</li>
+                                            <li>2016.1月20日——专家审评</li>
+                                            <li>2016.2月25日——颁奖</li>
+                                        </ul>
+                                        <hr/>
+                                        <h4 class="m-b-xs">奖项设置</h4>
+                                        <blockquote>
+                                            <ul class="unstyled">
+                                                <li><i class="fa fa-bookmark fa-right"></i>汽车服务金勋奖年度领军人物</li>
+                                                <li><i class="fa fa-bookmark fa-right"></i>汽车服务金勋奖连锁30强 </li>
+                                                <li><i class="fa fa-bookmark fa-right"></i>汽车服务金勋奖终端50强</li>
+                                                <li><i class="fa fa-bookmark fa-right"></i>汽车服务金勋奖模式创新奖</li>
+                                                <li><i class="fa fa-bookmark fa-right"></i>汽车服务金勋奖最佳雇主</li>
+                                                <li><i class="fa fa-bookmark fa-right"></i>汽车服务金勋奖媒体推荐奖</li>
+                                            </ul>
+                                        </blockquote>
+                                    </div>
+                                    <div class="modal-footer text-center">
+                                        <button type="button" class="btn btn-primary btn-rounded btn-block" data-dismiss="modal">关闭</button>
+                                     </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--奖项说明---->
+
+        <!--banner区域---->
+        <div class="container">
+            <div class="row" style="margin-left: 10px; margin-right: 10px;"   id="voting_list_container">
+              {% for voting  in voting_list %}
+
+               <div class="col-xs-12 text-center">
+               <a href="/list/{{ voting.id }}?_t={{_t}}">
+                <img src=/{{ voting.header }} alt="" width="100%">
+                </a>
+              </div>
+
+              {% endfor %}
+            </div>
+        </div>
+        <!--banner区域 end---->
+
+        <!-- 页脚 -->
+        <footer class="site-footer">
+            <div class="container">
+                <!-- 赞助商-->
+                <div class="row" style="margin-left:6px; margin-right:6px;">
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;color:#000;">
+                        主办方
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;color:#000;">
+                        总冠名
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;">
+                        <div class="ad01"></div>
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;">
+                        <div class="ad02"></div>
+                    </div>
+                </div>
+                <!-- 赞助商end -->
+
+                <!-- 版权申明 -->
+                <div class="row copyright">
+                    <div class="col-xs-12 text-center">
+                        <p>@本活动解释权归汽车服务世界所有</p>
+                    </div>
+                </div>
+                <!-- 版权申明end -->
+            </div>
+        </footer>
+        <!-- 页脚end
+    <script src="/static/web/js/jquery-2.1.1.min.js"></script> -->
+
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/static/web/js/bootstrap.min.js"></script>
+
+    </body>
+</html>

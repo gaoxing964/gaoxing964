@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>iBug</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Example of Fluid Layout with Bootstrap version 2.0 from w3cschool.cc">
+		<meta name="author" content="">
+		<link href="/static/css/bootstrap.css" rel="stylesheet">
+		<link href="/static/css/docs.css" type='text/css' rel='stylesheet' />
+		<link href="/static/css/bootstrap-table.min.css" rel="stylesheet">
+		<link href="/static/css/lanren.css" rel="stylesheet">
+		<link rel='stylesheet' href="/static/css/chosen.css" type='text/css' />
+		<link rel='stylesheet' href="/static/css/jquery.datetimepicker.min.css" type='text/css' />
+		<link rel="apple-touch-icon" href="/static/css/glyphicons-halflings.png" />
+		<link rel="apple-touch-icon" href="/static/css/glyphicons-halflings-white.png" />
+		<link rel="stylesheet" href="/static/css/jquery.pagewalkthrough.css" />
+		<script src="/static/js/jquery-1.11.3.min.js"></script>
+		<script>
+		</script>
+		<style>
+			.oddrowcolor {
+				background-color: #CCE5FF;
+			}
+			
+			.evenrowcolor {
+				background-color: #FFFFFF;
+			}
+			
+			<!-- .Special_left {
+				width: 42%;
+				height: auto;
+				float: left;
+			}
+			
+			.cerate_Special_test {
+				width: 57%;
+				height: auto;
+				float: left;
+			}
+			
+			.append_bug_div {
+				width: 57%;
+				height: auto;
+				float: left;
+			}
+			
+			.bug_list {
+				width: 100%;
+				height: auto;
+			}
+			
+			.import_bug_div {
+				width: 57%;
+				height: auto;
+				float: left;
+			}
+			
+			--> #modal_form .chzn-drop,
+			#modal_form .chzn-container {
+				width: 300px !important;
+			}
+		</style>
+		<style>
+			.demo {
+				text-align: center
+			}
+			
+			.button {
+				display: inline-block;
+				outline: none;
+				cursor: pointer;
+				text-align: center;
+				text-decoration: none;
+				font: 22px/100% 'Microsoft yahei', Arial, Helvetica, sans-serif;
+				padding: .5em 2em .55em;
+				text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+				-webkit-border-radius: .5em;
+				-moz-border-radius: .5em;
+				border-radius: .5em;
+				-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+				-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+				box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+			}
+			
+			.button:hover {
+				text-decoration: none;
+			}
+			
+			.button:active {
+				position: relative;
+				top: 1px;
+			}
+			/* green */
+			
+			.green {
+				color: #e8f0de;
+				border: solid 1px #538312;
+				background: #64991e;
+				background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+				background: -moz-linear-gradient(top, #7db72f, #4e7d0e);
+				filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+			}
+			
+			.green:hover {
+				background: #538018;
+				background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c));
+				background: -moz-linear-gradient(top, #6b9d28, #436b0c);
+				filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c');
+				color: #fff
+			}
+			
+			.green:active {
+				color: #a9c08c;
+				background: -webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f));
+				background: -moz-linear-gradient(top, #4e7d0e, #7db72f);
+				filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endColorstr='#7db72f');
+			}
+			
+			#walkthrough-content {
+				display: none
+			}
+			
+			#walkthrough-content h3 {
+				height: 30px;
+				line-height: 30px
+			}
+			
+			#walkthrough-content p {
+				line-height: 28px
+			}
+			
+			#jpwClose{
+				display:none;
+			}
+			.stepHeader{
+				margin-bottom: 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p id="back-to-top" style="z-index:9999"><a id="go_top" href="#top"><span></span>返回顶部</a></p>
+		{% include "ibug_header.html" %}
+		<div class="container-fluid" style="padding-top:20px;">
+
+			<div id="bug_list" class="bug_list" style="background:#FFFFF;">
+				<div id="myTabdiv">
+					<font color="#525252" size="4px" style="float:left;margin-top:8px;margin-right:20px;">Bug列表</font>
+					<ul id="myTab" class="nav nav-tabs" style="margin-bottom:0px;">
+						<li class="active"><a href="#home" onclick="All_Bug_List()" id="all_bug" data-toggle="tab" style="background:#FFA900">ALL</a></li>
+						<li><a style="cursor:pointer;background:#E5E5E5" href="#home" onclick="My_SubmitedHandler()" id="my_bug" data-toggle="tab">My Submited</a></li>
+						<li><a style="cursor:pointer;background:#E5E5E5" href="#home" onclick="My_TodosearchHandler()" id="my_todo_bug" data-toggle="tab">My Todo</a></li>
+					</ul>
+				</div>
+				<div id="myTabContent" style="clear:both" class="tab-content">
+					<div class="tab-pane fade in active" id="home" style="table-layout:fixed; ">
+						<a id="btn_new" class="btn btn-group" style="background: #FFB366;" href="#BugModal" onclick="location_to_create();">New</a>
+						<table id="bug_list_table" style="" data-toolbar="#toolbar" data-toggle="table" data-striped="true" data-url="/api/bugs_info" data-side-pagination="server" data-pagination="true" data-page-size="10" data-page-list="[5, 10, 20, 50, 100, 200]" data-sort-order="desc"
+						data-show-columns="true" data-detail-view="true" data-detail-formatter="detailFormatter" data-show-pagination-switch="false" data-id-field="id" data-show-export="true" data-cache="false" data-query-params="queryHandler" data-row-style="rowStyle"
+						data-classes="table-no-bordered">
+							<thead>
+								<tr>
+									<th data-field="priority" data-sortable="true" data-align="center" data-width="6%" title="priority">优先级</th>
+									<th data-field="id" data-sortable="true" data-align="center" data-width="5%" title="id">ID</th>
+									<th data-field="case_number" data-sortable="true" data-align="center" data-width="7%" title="case_number">CASE编号</th>
+									<th data-field="author" data-sortable="true" data-align="center" data-width="6%" title="author">作者</th>
+									<th data-field="create_time" data-sortable="true" data-align="center" data-width="7%" title="create_time">调试日期</th>
+									<th data-field="bug_description" data-align="right" data-width="10%">问题描述</th>
+									<th data-field="parents_category" data-align="center" data-sortable="true" data-width="8%" title="">所属模块</th>
+									<th data-field="owner" data-sortable="true" data-align="center" data-width="7%" title="owner">责任人</th>
+									<th data-field="is_solved" data-sortable="true" data-align="center" data-width="8%" title="is_solved">是否已解决</th>
+									<th data-field="bug_id" data-sortable="true" data-align="center" data-width="6%" title="bug_id">BugID</th>
+									<th data-field="remark" data-sortable="true" data-align="right" data-width="7%" title="remark">备注</th>
+									<th data-field="special_test_parents_project" data-align="center" data-sortable="true" data-width="7%" title="special_test_parents_project">项目</th>
+									<th data-field="special_test_name" data-sortable="true" data-align="center" data-width="8%" title="special_test_name">专项测试</th>
+									<th data-field="operate" data-sortable="true" data-align="center" data-width="8%" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<br/>
+				</div>
+			</div>
+			<hr>
+			<div id="bug_statistics" class="bug_statistics" style="background:#F5F5F5;">
+				<br/>
+
+				<div style=""><font color="#525252" size="4px"><span id="specica_name"></span>&nbsp;&nbsp;Bug统计&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+				<br/>
+				<div id="myTabContent" style="" class="tab-content">
+					<div class="tab-pane fade in active" id="home" style="table-layout:fixed; ">
+
+						<table id="bug_statistics_table" style="" data-toolbar="#toolbar" data-toggle="table" data-striped="true" data-url="/api/bug_count?status=1" data-side-pagination="server" data-pagination="true" data-page-size="10" data-page-list="[5, 10, 20, 50, 100, 200]"
+						data-sort-order="desc" data-detail-view="true" data-detail-formatter="detailFormatter" data-show-pagination-switch="false" data-id-field="id" data-classes="table-no-bordered" data-query-params="queryHandler" data-row-style="rowStyle">
+							<thead>
+								<tr>
+									<th data-field="special_test_parents_project" data-align="center" data-sortable="true" data-width="13%" title="id">项目</th>
+									<th data-field="special_test_name" data-align="center" data-sortable="true" data-width="13%" title="测试">专项测试</th>
+									<!-- <th data-field="special_test_pm"  data-sortable="true"  data-width=50 title="special_test_pm">PM</th>
+                                   <th data-field="special_test_cc_list"  data-sortable="true"  data-width=50 title="special_test_cc_list">CC list</th> -->
+									<th data-field="case_number_prefix" data-align="center" data-sortable="true" data-width="12%" title="case_number_prefix">CASE编号前缀</th>
+									<!-- <th data-field="research_coding_developer"  data-sortable="true"  data-width=50 title="research_coding_developer">研发代码开发人</th>
+                                   <th data-field="integration_testing_developer"  data-sortable="true"  data-width=50 title="integration_testing_developer">集成测试开发人</th> -->
+
+									<th data-field="unit_test_case_amount" data-align="center" data-sortable="true" data-width="13%" title="author">单元测试CASE数</th>
+
+									<th data-field="integration_testing_case_amount" data-align="center" data-sortable="true" data-width="12%" title="create_time">集成测试CASE数</th>
+
+									<th data-field="coding_row" data-align="center" data-sortable="true" data-width="15%">研发代码行</th>
+
+									<th data-field="current_all_bugs" data-align="center" data-sortable="true" data-width="10%" title="">问题总数</th>
+
+									<th data-field="current_open_bugs" data-align="center" data-sortable="true" data-width="10%" title="current_open_bugs">待解决问题数</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+				</div>
+
+			</div>
+			<hr>
+			<div id="BugModal" style="background:#FFE6CC;display:none">
+				<div class="modal-header">
+
+					<h3 id="myModalLabel">Append New Bug</h3>
+				</div>
+				<form id="modal_form">
+					<div class="modal-body" style="margin-left:50px;max-height: none;">
+						<input id="parrentid" type="hidden" />
+						<div>
+							<label><font color="red">*</font>专项测试单：</label>
+							<div>
+								<select id="special_test_name" name="parents_id" style="width:40%"></select>
+							</div>
+
+							<label><font color="red">*</font>CASE编号：</label>
+							<div>
+								<input id="case_number" name="case_number" type="text" />
+							</div>
+							<label><font color="red">*</font>问题描述：</label>
+							<div>
+								<textarea id="bug_description" name="bug_description" type="text" style="width:40%;height:70px"></textarea>
+								<!-- <input  type="text" style="width:40%" id="bug_description" name="bug_description"/> -->
+							</div>
+							<label><font color="red">*</font>所属模块：</label>
+							<div>
+								<select id="parents_category" name="parents_category">
+									<option value=''></option>
+									<option value='L4'>L4</option>
+									<option value='NAS'>NAS</option>
+									<option value='IMS'>IMS</option>
+									<option value='WCN'>WCN</option>
+									<option value='SDI'>SDI</option>
+									<option value='LRRC'>LRRC</option>
+									<option value='LL2'>LL2</option>
+									<option value='WRRC'>WRRC</option>
+									<option value='WRCC'>WRCC</option>
+									<option value='WRRCA'>WRRCA</option>
+									<option value='WL2'>WL2</option>
+									<option value='TL3'>TL3</option>
+									<option value='TL2'>TL2</option>
+									<option value='L1SIM'>L1SIM</option>
+								</select>
+							</div>
+							<label><font color="red">*</font>责任人：</label>
+							<div>
+								<select style="width:600%" id="owner" data-placeholder=" " name="owner" type="text" class="chzn-select" multiple="multiple">
+								</select>
+							</div>
+							<label><font color="red">*</font>是否已解决：</label>
+							<div>
+								<select id="is_solved" name="is_solved" class="form-control">
+									<option value="0">否</option>
+									<option value="1">是</option>
+
+								</select>
+							</div>
+							<label>Bug ID：</label>
+							<div>
+								<input id="bug_id" name="bug_id" type="text" />
+							</div>
+							<label>优先级：</label>
+							<div>
+								<select id="priority" name="priority">
+									<option value=""></option>
+									<option value="H">High</option>
+									<option value="M">Middle</option>
+									<option value="L">Low</option>
+								</select>
+							</div>
+							<label>备注：</label>
+							<div>
+								<textarea id="remark" name="remark" type="text" style="width:40%;height:70px"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer" align="center">
+						<button class="btn" style="text-shadow:none;width:100px;background:#B8B8B8" type="reset" id="reset_button">取消</button>
+						<button id="btnSubmit" class="btn" style="text-shadow:none;width:100px;margin-left:20px;background:#FFB366" type="button" onclick="submit_append_bug();">提交</button>
+					</div>
+				</form>
+			</div>
+
+			<br/>
+			<br/>
+			<input type="hidden" id="bugs_info_id" />
+		</div>
+		<div align="center" id="footerRight">
+			<p>© 2013-2016 Spreadtrum Communications Inc All Rights Reserved. 展讯通信(上海)有限公司 版权所有</p>
+		</div>
+
+		<div id="walkthrough-content">
+			<div id="walkthrough-1">
+				<h3 class="stepHeader">欢迎来到iBug的新手教程</h3>				
+			</div>
+			<div id="walkthrough-2">
+				<h3 class="stepHeader">登录后可以看到我提交的bug和我要处理的bug</h3>
+			</div>
+
+			<div id="walkthrough-3">
+				<h3 class="stepHeader">点击新增，增加bug</h3>
+			</div>
+
+			<div id="walkthrough-4">
+				<h3 class="stepHeader">填写bug信息</h3>
+			</div>
+
+			<div id="walkthrough-5">
+				<h3 class="stepHeader">提交bug</h3>
+			</div>
+		</div>
+
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/bootstrap-table.min.js"></script>
+		<script src="/static/js/bootstrap-table-cookie.js"></script>
+		<script src="/static/js/bootstrap-table-export.js"></script>
+		<script src="/static/js/tableExport.min.js"></script>
+		<script src="/static/js/underscore-min.js"></script>
+		<script src="/static/js/json2.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/static/js/chosen.jquery.js"></script>
+		<script src="/static/js/jquery.datetimepicker.min.js" type="text/javascript"></script>
+		<script src="/static/js/common.js" type="text/javascript"></script>
+		<script src="/static/js/ibug_header.js" type="text/javascript"></script>
+		<script src="/static/js/ibug_home.js" type="text/javascript"></script>
+		<script src="/static/js/jquery.pagewalkthrough.min.js" type="text/javascript"></script>
+
+		<script>
+			var urlstr = location.href;
+			var urlstatus = false;
+			$("#menu a").each(function() {
+				if ((urlstr + '/').indexOf($(this).attr('href')) > -1 && $(this).attr('href') != '') {
+					$(this).addClass('cur');
+					urlstatus = true;
+				} else {
+					$(this).removeClass('cur');
+				}
+			});
+			if (!urlstatus) {
+				$("#menu a").eq(0).addClass('cur');
+			}
+		</script>
+
+	</body>
+
+</html>

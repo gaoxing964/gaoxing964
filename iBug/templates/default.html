@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block indexCSS %}
+<style type="text/css">
+.glyphicon {
+    font-size: 30px;
+}
+
+
+.glyphicon.glyphicon-globe {
+    font-size: 55px;
+}
+
+.sub-links {
+  width:100%;
+  padding:30px;
+    display: block;
+    cursor: pointer;
+    -webkit-perspective: 0;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform .2s;
+    float: left;
+    min-width: 75px;
+    min-height: 75px;
+    text-align: center;
+    opacity: .75;
+    background-color: #2e8bcc;
+    z-index: 1;
+    border: 4px #fff solid;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.sub-links:visited{ 
+    text-decoration: none;
+   }   
+
+.sub-links:hover{
+  color: white;
+  text-align:center;
+  padding:30px;
+  display: inline-block;
+  opacity: 1;   
+    -webkit-perspective: 0;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform .2s;
+    text-decoration: none;
+   }
+
+.sub-links:active{  
+    text-decoration: none;
+   }   
+
+</style>
+{% endblock indexCSS %}
+
+{% block content %}
+ <div class="container" style="padding-top:160px;">
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+          <a href="/standards" class="sub-links" style="background-color:#393;">
+              <h1 style="margin:0px;margin-bottom:10px;">3GPP <br> Standards <br> Downloads</h1>
+                  <i class="glyphicon glyphicon-download-alt"></i>
+        </a>
+      </div>   
+
+      <div class="col-sm-6 col-md-4">
+         <a href="/cr" class="sub-links" style="background-color:#5bc0de;">
+               <h1 style="margin:0px;margin-bottom:10px;">3GPP Standards CR Tracing System</h1>
+                   <i class="glyphicon glyphicon-list-alt"></i>
+        </a>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+          <a href="/ue" class="sub-links" style="background-color:#f39c12;">
+              <h1 style="margin:0px;margin-bottom:10px;">3GPP UE Side Feature Tracing System</h1>
+                  <i class="glyphicon glyphicon-list"></i>
+        </a>
+      </div>  
+    
+
+
+
+    
+
+      <div class="col-sm-6 col-md-4">
+          <a href="#" class="sub-links" style="background-color:#d9534f;">
+              <h1 style="margin:0px;margin-bottom:10px;">3GPP <br> Standards <br> Monitoring</h1>
+                  <i class="glyphicon glyphicon-screenshot"></i>
+        </a>
+      </div>   
+
+      <div class="col-sm-6 col-md-4">
+          <a href="#" class="sub-links" style="background-color:#f39c12;">
+              <h1 style="margin:0px;margin-bottom:10px;">My <br> Task <br>Monitor </h1>
+                  <i class="glyphicon glyphicon-sunglasses"></i>
+        </a>
+      </div>   
+      
+
+      <div class="col-sm-6 col-md-4">   
+         <a href="#" class="sub-links" style="background-color:#337ab7;">
+               <h1 style="margin:0px;margin-bottom:10px;"><br>System <br>Administration</h1>
+                   <i class="glyphicon glyphicon-cog"></i>
+        </a>
+      </div>
+
+      
+
+    </div>
+
+  </div>
+
+
+    <!-- header body and footer start  -->
+    <div class="navbar navbar-default navbar-fixed-bottom" style="background-color:#2e8bcc;border-color:#2e8bcc;min-height:40px;">
+      <div class="container" >
+        <span style="color:white;font-size:20px;">Notes</span>
+        <ol style="display:inline-block;color:white;font-size:12px;margin:0px;margin-top:3px;padding-left:20px;">
+      <li>It is highly recommended to make display resolution configured as 1280×800 for a better user experience.</li>
+      <li>This system could be accessed by many types of browsers, including IE(not older than IE9), Google Chrome3.0, Mozilla Firefox3.5.</li>
+    </ol>
+      
+      </div>
+    </div>
+
+    
+    <!-- footer end  -->
+{% endblock %}

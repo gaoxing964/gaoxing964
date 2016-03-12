@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>投票应用</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    </head>
+    <body>
+        <div id="box">
+        </div>
+
+
+
+<script>
+
+         if(!wx()){
+               document.getElementById("box").innerHTML = "";
+               document.write("<h4>请用微信打开投票链接!</h4>");
+         }else{
+               location.href = "/index";
+         }
+
+        function wx(){
+            //return true
+
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+    </script>
+
+
+
+
+    </body>
+</html>

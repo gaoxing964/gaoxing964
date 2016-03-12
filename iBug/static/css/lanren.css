@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+/** 关于全局字体的设置 **/
+body{
+    font-family: "Microsoft YaHei","微软雅黑","Microsoft JhengHei","华为细黑","STHeiti","MingLiu"; 
+    font-size:10px;
+}
+@media only screen and (max-width: 1279px){
+    html {
+        font-size: 10px !important;
+    }
+}
+
+@media only screen and (min-width: 1279px){
+    html {
+        font-size: 10px !important;
+    }
+}
+@media only screen and (min-width: 1365px){
+    html {
+        font-size: 12px !important;
+    }
+  }
+/** 表格中的字體都是1rem**/
+.bootstrap-table{
+    font-size:1rem;
+}
+/**设置一下表格的最小高度   这样可以防止导出的下拉框变形 **/
+.no-records-found{    	
+      	min-height: 150px;
+}
+/** 这里我将bootstrap-dataTable的样式改了  这样可以解决下拉框变形的问题 **/
+div.tab-content{
+	overflow:visible;
+}
+
+ /** 用于去掉边框样式的css**/
+ .table-no-bordered  tbody>tr>td{
+   border-left:none;
+   word-break: break-all;
+   overflow: hidden;
+ }
+ /** 用户增加表格头部边框的css**/
+ .table-no-bordered>thead{
+   border-top:1px solid black;
+   border-bottom:1px solid black;
+ }
+/**用于处理页面过挤的问题**/
+.table-no-bordered{
+	table-layout: fixed;
+}
+.fixed-table-container thead>tr>th .sortable{
+	padding-right: 15px;
+}
+.fixed-table-container thead>tr>th .th-inner{
+    padding:8px 0px 8px 0px;
+}
+
+*{margin:0;padding:0;border:0;list-style: none;}
+.menu{height:px;display:block;padding:0px;width:px;margin: 0 auto;background-image:url(../images/s_03.jpg);background-repeat:repeat;}
+.menu ul{list-style:none;padding:0;margin:0;}
+.menu ul li{float:left;overflow:hidden;position:relative;line-height:48px;text-align:center;}
+.menu ul li a{position:relative;display:block;color:#fff;width:111px;height:48px;font-family:"微软雅黑", "宋体";font-size:14px;text-decoration:none;cursor:pointer;font-weight:bold;line-height:48px;}
+.menu ul li a span{position:absolute;left:0;width:111px;}
+.menu ul li a span.out{top:0px;}
+.menu ul li a span.over,  .menu ul li a span.bg{top:-48px;}
+.menu ul li a span.over{color:#FFF;height:48px;width:111px;background-image:url(../images/w_03.jpg);background-repeat:repeat;}
+
+
+.u_menu { padding:0; margin:0; list-style-type:none;}
+	.u_menu li { background:; margin-right:1px; float:left; color:#fff; }
+	.u_menu li a { display:block; width:80px; text-align:center; height:32px; line-height:32px; color:#fff; font-size:13px; text-decoration:none;}
+.cur{ background:#FABD00; font-weight:bold;}
+
+p#back-to-top{
+position:fixed;
+display:none;
+bottom:10px;
+right:0px;
+}
+p#back-to-top a{
+text-align:center;
+text-decoration:none;
+color:#d1d1d1;
+display:block;
+width:64px; 
+/*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/
+-moz-transition:color 1s;
+-webkit-transition:color 1s;
+-o-transition:color 1s;
+}
+p#back-to-top a:hover{
+color:#979797;
+}
+p#back-to-top a span{
+background:transparent url(/static/img/sprite.png) no-repeat 8px 22px;
+border-radius:6px;
+display:block;
+height:64px;
+width:56px;
+margin-bottom:5px;
+/*使用CSS3中的transition属性给<span>标签背景颜色添加渐变效果*/
+-moz-transition:background 1s;
+-webkit-transition:background 1s;
+-o-transition:background 1s;
+}
+#back-to-top a:hover span{
+background:transparent url(/static/img/sprite.png) no-repeat 8px 22px;
+}
+
+
+

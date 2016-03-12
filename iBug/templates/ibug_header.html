@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  >
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+ 
+</head>
+
+<div class="navbar navbar-fixed-top"> 
+        
+        <div class="navbar-inner"> 
+            <div class="container-fluid" style="background:#255F9A;height:50px">
+              <div id="menu" class="menu">
+                <span class="brand" href="#" style="float:left;color:#fff;font-size:30px;margin-top:2px;margin-right:15px; "></span>
+                    <ul class="u_menu" id="u_menu">
+                        <li><a id="homeHeader" href="/Home">Home</a></li>
+                        <li><a id="searchHeader" href="/Search">Search</a></li> 
+                        <li><a id="rankHeader" href="/Rank">Rank</a></li>
+                        <li><a id="settingHeader" href="/Setting" id="setting" style="display:none;">Setting</a></li>
+                        <li><a href="/Help">Help</a></li> 
+                    </ul>
+                </div>             
+              <div class="nav-collapse">                
+                <ul class="nav">
+                  <li class="active"></li> 
+                </ul>
+                 
+                <div id="login-container" style="margin-right:0px;margin-top:10px;float:right;"><span style="color:#B0D7F3;font-weight:700">  &nbsp;&nbsp;<a href="javascript:logout()" style="color:#ECF044">logout</a></span></div>
+              </div> 
+              <div class="data" id="passed-username"  data={{uname}}></div>
+            </div>
+            <div style="background:#FFB366;height:4px"></div>
+        </div> 
+        <input type="hidden" id="login_name"/>
+    </div>
+    <script> 
+    	var login_user = $("#passed-username").attr("data");
+    	if(login_user=="ziping.lv"||login_user=="liang.han"||login_user=="hao.xu"||login_user=="qinghua.zhou"){
+    		$("#setting").show(); 
+    	}else{ 
+    		$("#setting").hide();
+    	}
+    </script>
+</html>

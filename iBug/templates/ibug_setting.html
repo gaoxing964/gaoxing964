@@ -1,0 +1,272 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>iBug</title>
+     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Example of Fluid Layout with Bootstrap version 2.0 from w3cschool.cc">
+    <meta name="author" content=""> 
+    
+    <link href="/static/css/bootstrap.css" rel="stylesheet"> 
+    <link href="/static/css/docs.css" type='text/css' rel='stylesheet' /> 
+    <link href="/static/css/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/static/css/lanren.css" rel="stylesheet">
+    <link rel='stylesheet' href="/static/css/chosen.css" type='text/css'/>
+      <link rel='stylesheet' href="/static/css/bootstrap-select.css" type='text/css'/>
+    <link rel='stylesheet' href="/static/css/jquery.datetimepicker.min.css" type='text/css'/>
+    <link rel="apple-touch-icon" href="/static/css/glyphicons-halflings.png"/>
+    <link rel="apple-touch-icon" href="/static/css/glyphicons-halflings-white.png"/>
+    <script src="/static/js/jquery.min.js"></script>
+   
+     
+    <style>
+body{
+font-family: "Microsoft YaHei","微软雅黑","Microsoft JhengHei","华为细黑","STHeiti","MingLiu"; 
+}
+#cerate_Special_form input,select{
+    width:50%
+}
+.Special_left{width:40%;height:auto;float:left;}
+.cerate_Special_test{width:55%;height:auto;float:left;}
+.import_bug_div{width:55%;height:auto;float:left;}
+    </style>
+  </head>
+<body>
+<p id="back-to-top" style="z-index:9999"><a id="go_top" href="#top" ><span></span>返回顶部</a></p>
+    {% include "ibug_header.html" %}
+    <div class="container-fluid" style="background:#">
+        <div class="row-fluid">
+            <div class="span12 container-body-inner">
+
+              <div class="form-horizontal">
+                    <div class="control-group" style="margin:10px 0;padding:5px">
+                      
+                        <button type="button" class="btn btn-primary" id="test_manage"  onclick="management('专项测试管理')" style="background:#FFB366;margin-left:20px;" > <font color="#333333">专项测试管理</font></button>
+
+                        <button type="button" class="btn btn-primary" id="modal_manage"  onclick="management('所属模块管理')" style="background:#CFCFCF;margin-left:20px;" > <font color="#333333">所属模块管理</font></button>   
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <hr>
+    <div class="container-fluid" style="padding-top:px;background:#">
+     
+        <div id="Special_left" class="Special_left" align="left" style="padding:20px;font-size:12px;border-style:solid;border-right:0px solid #555555; border-left-color:#FFFFFF;border-bottom-color:#FFFFFF;border-top-color:#FFFFFF; " > 
+            
+            <span>
+                <font color="#525252" size="5px">专项列表</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <button id="add_Special_test" class="btn" style="background:#FFB366;margin-right:30px;float:right">add</button>
+                  
+            </span> 
+               
+           
+            <hr width="98%" size="1px" style="height:1px;border:none;border-top:1px solid #555555;" align="center" />
+            <div style="">            
+                <table style="border-collapse:collapse;width:600px;scrollbar-3dlight-color:#D4D0C8;scrollbar-face-color:#D6D6D6;overflow-x: auto;overflow-y: auto;width:95%;border:1px;font-size:16px">
+                    <thead style="font-weight:bold" >
+                       <tr style="height:35px;">
+                           <td width="10%" align="center">ID</td>
+                           <td width="15%">Creator</td> 
+                           <td width="40%">专项名</td>
+                           <td width="15%" align="center">Status</td>
+                           <td width="25%" align="center"><a onclick="show_search_div();" style="margin-left:25px;cursor:pointer"><img src="/static/img/mdian.gif"></img></a></td>
+                       </tr>
+                       <tr id="search_div" style="display:none;">
+                           <td align="center"> </td>
+                           <td ><input type="text" id="creators" style="width:40%"/></td> 
+                           <td ><input type="text" id="Special_names" style="width:70%"/></td>
+                           <td align="center"><select id="status" style="width:80%"><option></option><option value="1">open</option><option value="0">close</option></select></td>
+                           <td align="center"><button style="margin-top:-12px;" class="btn" onclick="search_Special()">Search</button></td>
+                       </tr>
+                    </thead>
+                     
+                    <tbody class="Special_datatable" style="background:#ffffff;">
+                   
+                    </tbody> 
+                </table>
+            </div>
+                <br/><br/>  
+            <div id="" class="" style="height:50px;font-size:14px;" align="center"> 
+            </div>  
+        </div>
+        
+        <div id="cerate_Special_div" class="cerate_Special_test" style="background:#FFE6CC">  
+            <br/>
+            <div style=""> 
+                <div id="select_train_title" >
+                    <span style="margin-left:20px;"><font color="#525252" size="5px" id="Special">创建专项</font></span> 
+                    <hr width="95%" size="1px" style="margin-left:20px;height:1px;border:none;border-top:1px solid #555555;" align="center" />
+                </div>
+                 
+                <br/>
+                <form id="cerate_Special_form" class="form-horizontal" style="margin-left:20px" role="form"> 
+                     
+                    <div class="control-group">
+                        <label class="control-label" ><font color="red">*</font>专项测试名称：</label>
+                        <div class="controls">
+                            <input  id="special_test_name" name="special_test_name" type="text" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label"><font color="red">*</font>专项所属项目：</label>
+                        <div class="controls">
+                            <select id="special_test_parents_project" name="special_test_parents_project" >
+                            	<option value=""></option>
+                            	<option value="Whale">Whale</option>
+                              <option value="Whale2">Whale2</option>  
+                              <option value="SharkL">SharkL</option>
+                              <option value="TShark3">TShark3</option>
+                              <option value="SC9830I ">SC9830I </option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >PM：</label>
+                        <div class="controls">
+                           <!-- <input  id="special_test_pm" name="special_test_pm" type="text" />-->
+                            <select id="special_test_pm" data-placeholder=" " name="special_test_pm" class="chzn-select"  multiple="multiple">
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >CC List：</label>
+                        <div class="controls">
+                            <select  id="special_test_cc_list" data-placeholder=" " name="special_test_cc_list" class="chzn-select" multiple="multiple" type="text">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >集成测试开发人：</label>
+                        <div class="controls">
+                            <select  id="integration_testing_developer" data-placeholder=" " name="integration_testing_developer" class="chzn-select" multiple="multiple" >
+                             </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >研发代码开发人：</label>
+                        <div class="controls">
+                            <select  id="research_coding_developer" data-placeholder=" " name="research_coding_developer" class="chzn-select" multiple="multiple">
+                             </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >CASE编号前缀：</label>
+                        <div class="controls">
+                            <input  id="case_number_prefix" name="case_number_prefix" type="text" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >单元测试CASE数：</label>
+                        <div class="controls">
+                            <input  id="unit_test_case_amount" name="unit_test_case_amount" type="text" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >集成测试CASE数：</label>
+                        <div class="controls">
+                            <input  id="integration_testing_case_amount" name="integration_testing_case_amount" type="text" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >研发代码行：</label>
+                        <div class="controls">
+                            <input  id="coding_row" name="coding_row" type="text" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >专项开始时间：</label>
+                        <div class="controls">
+                            <input  id="starting_time" name="starting_time" class="datetimepicker" type="text" style="background:#FFFFFF" readonly="readonly"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >专项计划完成时间：</label>
+                        <div class="controls">
+                            <input  id="intend_end_time" name="intend_end_time" class="datetimepicker" type="text" style="background:#FFFFFF" readonly="readonly"/>
+                        </div>
+                    </div>  
+                    <hr width="95%" size="1px" style="margin-left:20px;height:1px;border:none;border-top:1px solid #555555;" align="center" />
+                    <div style="margin-left:200px">
+                        <button class="btn" id="reset_button" type="reset">Reset</button>
+                        <button id="new_Special"  class="btn" type="button" onclick="submit_Special_test()" style="margin-left:20px;background:#FFB366">Submit</button>
+                         
+                    </div> 
+                    <br/>
+                <br/>
+                <br/>
+                </form>
+            </div>      
+        </div>
+        
+        <div id="import_bug_div" class="import_bug_div" style="display:none;background:#F5F5F5">
+            <br/>   
+            <div> 
+                <div id="appendbug" style="">
+                    <span style="margin-left:20px;"><font color="#525252" size="5px">导入Bug</font></span> 
+                    <hr width="95%" size="1px" style="margin-left:20px;height:1px;border:none;border-top:1px solid #555555;" align="center" />
+                </div>
+                
+                <div style="margin-left:20px;" id="iframe_div">
+
+
+
+                </div> 
+                 
+                 
+                <br/>
+                <br/>
+                <br/>
+            </div> 
+            
+        </div>
+        
+    </div>
+     <input id="parrentid" type="hidden"/>
+    <div  align="center">
+        <p>© 2013-2016 Spreadtrum Communications Inc All Rights Reserved. 展讯通信(上海)有限公司 版权所有</p> 
+    </div>         
+    <script type="text/javascript">
+      var urlstr = location.href; 
+      var urlstatus=false;
+      $("#menu a").each(function () {
+        if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') {
+          $(this).addClass('cur'); urlstatus = true;
+        } else {
+          $(this).removeClass('cur');
+        }
+      });
+      if (!urlstatus) {$("#menu a").eq(0).addClass('cur'); }
+    </script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap-table.min.js"></script>
+    <script src="/static/js/bootstrap-table-cookie.js"></script>
+    <script src="/static/js/bootstrap-table-export.js"></script> 
+    <script src="/static/js/tableExport.min.js"></script>
+    <script src="/static/js/underscore-min.js"></script>
+    <script type="text/javascript" src="/static/js/chosen.jquery.js"></script>
+    <script src="/static/js/bootstrap-select.js" type="text/javascript"></script>
+    <script src="/static/js/jquery.datetimepicker.min.js" type="text/javascript"></script>
+    <script src="/static/js/common.js" type="text/javascript"></script> 
+    <script src="/static/js/ibug_header.js"></script>
+    <script src="/static/js/ibug_setting.js"></script>
+    <script>
+	    function management(str){
+	    	if(str=="专项测试管理"){ 
+	    		$("#test_manage").css("background","#FFB366");
+	    		$("#modal_manage").css("background","#CFCFCF");
+	    	}else{
+	    		$("#modal_manage").css("background","#FFB366");
+	    		$("#test_manage").css("background","#CFCFCF");
+	    	} 
+	    }
+
+    </script>
+   
+  </body>
+</html>

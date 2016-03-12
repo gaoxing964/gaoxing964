@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+
+        <title>2015-2016年度汽车服务金勋奖</title>
+        <meta name="description" content="2015-2016年度汽车服务金勋奖">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/static/web/css/font-awesome.css">
+        <link rel="stylesheet" href="/static/web/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/web/css/style.css">
+    </head>
+    <body>
+    <div id="box">
+        <!-- 选手配图 -->
+        <div class="section">
+        <div class="">
+            <div class="row" style="margin-left: 0px; margin-right: 0px;">
+                <div class="col-xs-12 text-left" style="padding-left: 0px; padding-right: 0px;">
+                    <div class="imgtitle">
+                        <div class="imgtitlebg"></div>
+                        <img src="/{{ player.player_image }}" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- 选手配图 end-->
+
+        <!-- 选手介绍 -->
+        <div class="container">
+            <div class="companyabout">
+                <h2>{{ player.player_name }}</h2>
+                <p style="text-indent: 2em">{{ player.player_details }}</p>
+            </div>
+        </div>
+        <!-- 选手介绍 end-->
+        <hr/>
+        <!-- 选手投票 -->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <button class="btn btn-danger btn-circle btn-lg" type="button"  id="btnVote">
+                        <i class="fa fa-heart-o fa-4x"></i>
+                    </button>
+                    <p class="back-color">赶紧为TA投一票吧！</p>
+                </div>
+            </div>
+        </div>
+        <!-- 选手投票 end-->
+        <hr/>
+        <!-- 投票情况 -->
+        <footer class="about-footer">
+            <div class="container">
+                <div class="row">
+                    <!-- 票数 -->
+                    <div class="col-xs-12 text-center">
+                        <div class="ranking">
+                            <span class="number" id="result_number">{{ player.result_number }}</span>
+                            <p>总票数</p>
+                        </div>
+                    </div>
+                    <!-- 票数end -->
+
+                    <!-- 排名
+                    <div class="col-xs-6 text-center">
+                        <div class="ranking">
+                            <span class="number"></span>
+                            <p>当前排名</p>
+                        </div>
+                    </div>
+                    排名end -->
+                </div>
+            </div>
+        </footer>
+        <!-- 投票情况 -->
+		<!-- 页脚 -->
+        <footer class="site-footer">
+            <div class="container">
+                <!-- 赞助商-->
+                <div class="row" style="margin-left:6px; margin-right:6px;">
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;color:#000;">
+                        主办方
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;color:#000;">
+                        总冠名
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;">
+                        <div class="ad01"></div>
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;">
+                        <div class="ad02"></div>
+                    </div>
+                </div>
+                <!-- 赞助商end -->
+				<!-- 微信 -->
+                <div class="row copyright">
+                    <div class="col-xs-12 text-center">
+                         <div class="adimg"></div>
+                    </div>
+                </div>
+                <!-- 微信end -->
+                <!-- 版权申明 -->
+                <div class="row copyright">
+                    <div class="col-xs-12 text-center">
+                        <p>@本活动解释权归汽车服务世界所有</p>
+                    </div>
+                </div>
+                <!-- 版权申明end -->
+            </div>
+        </footer>
+        <!-- 页脚end -->
+
+
+<script src="/static/web/js/jquery-2.1.1.min.js"></script>
+<script src="/static/web/js/jquery-cookie.js"></script>
+</div>
+
+<script>
+       if(!wx()){
+
+               document.getElementById("box").innerHTML = "";
+               document.write("<h4>请用微信打开投票链接!</h4>");
+         }
+
+        // function init(file_path)
+        // {
+        //     var myScript= document.createElement("script");
+        //     myScript.type = "text/javascript";
+        //     myScript.src= file_path;
+        //     document.body.appendChild(myScript);
+        // }
+
+        function wx(){
+            //return true;
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+</script>
+
+
+        <script>
+
+        $(function(){
+            $("#btnVote").click(function(){
+                $("#btnVote").attr("disabled",true);
+                var weixin_id = $.cookie("voterID");
+                voteHandler(weixin_id);
+            })
+        })
+
+        function voteHandler(weixin_id){
+                $.ajax({
+                    method: "POST",
+                    url: "/vote",
+                    dataType:"json",
+                    data: { weixin_id: weixin_id, player_id: {{ player.id }} }
+                  }).done(function(response) {
+                      console.log(response);
+                      if(response.status==500){
+                          switch(response.message){
+                            case "VoterToPlayer":
+                                alert("您今天投给此选手票已经满了，请明天再来吧");
+                                break;
+                            case "Voter":
+                                alert("您今天的投票次数已经用完了，请明天再来吧");
+                                break;
+                            case "Player":
+                                alert("今天此选手被投的次数已经满了，请明天再来吧");
+                                break;
+                          }
+                          return
+                      }else if(response.status==400){
+                          alert("没有获取验证信息，请重新刷新页面!");
+                          return
+                      }
+                      alert("恭喜，投票成功!");
+                      var result_number = parseInt($("#result_number").text())+1;
+                      $("#result_number").text(result_number);
+                      $("#btnVote").attr("disabled",false);
+                     // location.reload();
+                  });
+      }
+
+
+        </script>
+    </body>
+</html>
+
+

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+  <head>
+ 	 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
+     <title></title> 
+     
+     <!-- <link href="/static/css/bootstrap.css" rel="stylesheet">   -->
+      
+     <script src="/static/js/jquery.min.js"></script>
+     <script src="/static/js/ibug_home.js"></script>
+  </head>
+  
+
+<body style="margin:10px;padding:0px;">
+    <form id="file_form" action="/api/inport_bug_info" method="POST" enctype="multipart/form-data">
+                      <input type=file name=file id="file"><input type="hidden"  name="parents_id" id="parents_id" value={{parrent_id}} />
+                         <input class="btn" style="margin-top:px;" id="upload_file" type=submit value=Upload onclick="submit_courseware()">
+                    </form>
+
+    </body>
+<script>
+function submit_courseware(){
+    var attachment=$("#file").val();
+    //var upload=$("#upload").val();
+    if(attachment==""){
+        alert("请选择附件");
+        return false;
+    }
+}
+</script>
+</html>

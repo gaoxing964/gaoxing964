@@ -1,0 +1,161 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>iBug</title>
+     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Example of Fluid Layout with Bootstrap version 2.0 from w3cschool.cc">
+    <meta name="author" content=""> 
+    
+    <link href="/static/css/bootstrap.css" rel="stylesheet"> 
+    <link href="/static/css/docs.css" type='text/css' rel='stylesheet' /> 
+    <link href="/static/css/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/static/css/lanren.css" rel="stylesheet">
+    
+    <link rel='stylesheet' href="/static/css/jquery.datetimepicker.min.css" type='text/css'/>
+    <link rel="apple-touch-icon" href="/static/css/glyphicons-halflings.png"/>
+    <link rel="apple-touch-icon" href="/static/css/glyphicons-halflings-white.png"/>
+    <script src="/static/js/jquery.min.js"></script>
+     
+    <style>
+body{
+font-family: "Microsoft YaHei","微软雅黑","Microsoft JhengHei","华为细黑","STHeiti","MingLiu"; 
+}
+    
+.container-title{border: 1px solid #ECB381;background-color: #ECB381;height:30px;line-height:30px;color:#fff;font-weight:700;font-size:16px;}
+         .container-body-inner{border: 2px solid  #ECB381;background:#fff;}
+         .my-label{font-weight:700;color:#666;text-algin:right}
+         .tooltip-inner{text-align:left;}
+ 
+    </style>
+  </head>
+<body>
+<p id="back-to-top" style="z-index:9999"><a id="go_top" href="#top" ><span></span>返回顶部</a></p>
+    {% include "ibug_header.html" %}
+
+    <div class="container-fluid" id="content-body" style="zoom:0;padding-top:40px;">
+         
+         <div class="row-fluid">
+            <div class="span12 container-body-inner" style="background:#FFE6CC">
+
+              <div class="form-horizontal">
+                  <div class="control-group" style="margin:10px 0;padding:5px;">
+                     <label class="control-label my-label" style="margin-left:10px;width:120px;">问题创建时间&nbsp;从: &nbsp;</label> 
+                    <div class="controls" style="margin-left:10px;">
+                     
+                      <input type="text" id="start_date" class="datetimepicker" style="background:#FFFFFF" readonly="readonly">
+                      至&nbsp;
+                      <input type="text" id="end_date" class="datetimepicker" style="background:#FFFFFF" readonly="readonly">
+                      <button type="button" class="btn" id="btn-processn" name="btn-processn" style="margin-left:20px;background:#FFB366"  > <i class="icon-play" name="btn-processn"></i>   Search</button>
+
+                       
+
+                    </div>
+                   </div>
+             </div>
+
+            </div>
+         </div>
+      </div>
+      
+      <div class="container-fluid" id="content-body" style="zoom:0;padding-top:20px;">
+         <div class="row-fluid">
+            <div class="span12 container-title" style="background:#99CCFF;border-color:#99CCFF"> &nbsp;&nbsp;<!-- <i class="icon-chevron-right"></i> --><font color="black">>> Ranking</font></div>
+         </div>
+         <div class="row-fluid">
+            <div class="span12 container-body-inner" style="border-color:#99CCFF">
+
+              <div class="form-horizontal">
+                  <div class="control-group" style="margin:10px 0;padding:5px;">
+                     nothing...
+                   </div>
+             </div>
+
+            </div>
+         </div>
+      </div>
+    <hr>
+    <div class="container-fluid" id="content-body" style="zoom:0;padding-top:20px;background:">
+    <div id="bug_list" class="bug_list" style="background:#FFFFFF;"><br/>
+             
+                <div style=""><font color="#525252" size="4px"><span id="specica_name"></span>&nbsp;&nbsp;Bug列表&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+                   
+                    <div id="myTabContent" style="" class="tab-content" > 
+                        <div class="tab-pane fade in active" id="home" style="table-layout:fixed; ">
+                        
+                            <table id="bug_list_table" style=""
+                               data-toolbar="#toolbar"                                
+                               data-toggle="table" 
+                               data-striped="true"
+                               data-url="/api/bugs_info"  
+                               data-side-pagination="server" 
+                               data-pagination="true" 
+                               data-page-size = "10"
+                               data-page-list="[5, 10, 20, 50, 100, 200]"               
+                               data-sort-order="desc"  
+                               data-detail-view="true"
+                               data-detail-formatter="detailFormatter"
+                               data-show-pagination-switch="false"
+                               data-id-field="id"                                
+                               data-query-params = "queryHandler"
+                               data-row-style = "rowStyle"
+                               data-classes="table-no-bordered">
+                            <thead>
+                                <tr>  
+                                   <th data-field="id" data-sortable="true"   data-width="7%" title="id">ID</th> 
+                                   <th data-field="case_number"  data-sortable="true"  data-width="10%" title="case_number">CASE编号</th>        
+                                   <th data-field="author" data-sortable="true"  data-width="9%" title="author" >作者</th>         
+                                
+                                   <!-- <th data-field="Meeting_Number" data-sortable="true" data-cell-style="cellStyle" data-width=100 title="Meeting_Number">Meeting_Number</th>  -->
+                                
+                                   <th data-field="create_time" data-sortable="true"  data-width="10%" title="create_time">调试日期</th> 
+                                
+                                   <th data-field="bug_description" data-sortable="true"  data-width="12%" >问题描述</th> 
+                                
+                                   <th data-field="parents_category" data-sortable="true"  data-width="10%" title="">所属模块</th> 
+                                
+                                   <th data-field="owner" data-sortable="true"  data-width="13%" title="owner">责任人</th> 
+                                
+                                   <th data-field="is_solved" data-sortable="true"  data-width="9%" title="is_solved">是否已解决</th> 
+                                
+                                   <th data-field="bug_id" data-sortable="true"  data-width="9%" title="bug_id">BugID</th> 
+                                   <th data-field="remark" data-sortable="true" data-width="9%" title="remarks">备注</th> 
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                        </div>
+                        <br/> 
+                    </div> 
+        </div>
+        </div>
+    <div  align="center">
+        <p>© 2013-2016 Spreadtrum Communications Inc All Rights Reserved. 展讯通信(上海)有限公司 版权所有</p> 
+    </div>         
+    
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap-table.min.js"></script>
+    <script src="/static/js/bootstrap-table-cookie.js"></script>
+    <script src="/static/js/bootstrap-table-export.js"></script> 
+    <script src="/static/js/tableExport.min.js"></script>
+    <script src="/static/js/underscore-min.js"></script> 
+    <script src="/static/js/jquery.datetimepicker.min.js" type="text/javascript"></script>
+    <script src="/static/js/common.js" type="text/javascript"></script>
+    <script src="/static/js/ibug_header.js"></script>
+    <script src="/static/js/ibug_rank.js"></script>
+    <script type="text/javascript"> 
+        var urlstr = location.href; 
+        var urlstatus=false;
+        $("#menu a").each(function () {
+            if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') {
+                $(this).addClass('cur'); urlstatus = true;
+            } else {
+                $(this).removeClass('cur');
+            }
+        });
+        if (!urlstatus) {$("#menu a").eq(0).addClass('cur'); }
+
+    </script>  
+  </body>
+</html>

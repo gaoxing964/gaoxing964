@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+
+        <title>2015-2016年度汽车服务金勋奖</title>
+        <meta name="description" content="2015-2016年度汽车服务金勋奖">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/static/web/css/font-awesome.css">
+        <link rel="stylesheet" href="/static/web/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/web/css/style.css">
+    </head>
+    <body>
+    <div id="box">
+        <!--投票说明-->
+        <div class="container">
+            <div class="row">
+                <!-- <img src="/{{ voting.header }}" alt="" width="100%"> -->
+				<img src="/static/web/images/bg.png" alt="" width="100%">
+            </div>
+        </div>
+        <!--投票说明end -->
+        <!--投票主题名称-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h1 class="title">
+                        <i class="fa fa-bookmark fa-right"></i>{{ voting.vote_theme }}<i class="fa fa-bookmark fa-left"></i>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <!--投票主题名称end -->
+
+        <!--投票选手区域 -->
+        <div class="main-posts">
+            <div class="container">
+                <div class="row" style="margin-left: 0px; margin-right: 0px;">
+                    <div class="blog-masonry masonry-true" id="player_list_container">
+
+            {% for player  in player_list %}
+            <div class="post-masonry col-xs-6">
+				<div class="post-thumb">
+					<a href="/about/{{ player.id}}">
+						<div class="titleimgbg"></div>
+						<div class="titlebg text-center">{{ player.player_name }}</div>
+					</a>
+
+                    <div class="title-over">
+                        <h4><span class="pollall">{{ player.result_number }}<span>&nbsp;<span class="badge">NO.{{ player.badge }}</span></h4>
+                    </div>
+
+					<div class="title-name">{{ player.player_name }}</div>
+				</div>
+			</div>
+             {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--投票选手区域 end -->
+
+        <!-- 页脚 -->
+        <footer class="site-footer">
+            <div class="container">
+                <!-- 赞助商-->
+                <div class="row" style="margin-left:6px; margin-right:6px;">
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;color:#000;">
+                        主办方
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;color:#000;">
+                        总冠名
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;">
+                        <div class="ad01"></div>
+                    </div>
+                    <div class="col-xs-6 text-center" style="padding-left: 2px; padding-right: 2px;">
+                        <div class="ad02"></div>
+                    </div>
+                </div>
+                <!-- 赞助商end -->
+
+                <!-- 版权申明 -->
+                <div class="row copyright">
+                    <div class="col-xs-12 text-center">
+                       <!-- <p>@本活动最终解释权归汽车服务世界所有</p> -->
+                       {{ voting.footer }}
+                    </div>
+                </div>
+                <!-- 版权申明end -->
+            </div>
+        </footer>
+        <!-- 页脚end -->
+      <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+
+</div>
+<script>
+       if(!wx()){
+               document.getElementById("box").innerHTML = "";
+               document.write("<h4>请用微信打开投票链接!</h4>");
+         }
+
+        // function init(file_path)
+        // {
+        //     var myScript= document.createElement("script");
+        //     myScript.type = "text/javascript";
+        //     myScript.src= file_path;
+        //     document.body.appendChild(myScript);
+        // }
+
+        function wx(){
+
+            //return true;
+
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+</script>
+
+
+</body>
+
+</html>
